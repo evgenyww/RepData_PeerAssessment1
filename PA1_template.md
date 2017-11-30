@@ -36,7 +36,7 @@ ggplot(data=stepsPerDay, aes(date, steps)) +
   labs(title="Steps per day")
 ```
 
-![](PA1_template_files/figure-html/hist-1.png)<!-- -->
+![](PA1_template_files/figure-html/unnamed-chunk-2-1.png)<!-- -->
 
 
 ```r
@@ -69,7 +69,7 @@ ggplot(data=stepsPerInterval, aes(interval, steps)) +
   ylab(label = "average steps")
 ```
 
-![](PA1_template_files/figure-html/average steps-1.png)<!-- -->
+![](PA1_template_files/figure-html/unnamed-chunk-4-1.png)<!-- -->
 
 
 ```r
@@ -132,7 +132,7 @@ ggplot(data=stepsPerDay2, aes(date, steps)) +
   labs(title="Steps per day")
 ```
 
-![](PA1_template_files/figure-html/hist2-1.png)<!-- -->
+![](PA1_template_files/figure-html/unnamed-chunk-8-1.png)<!-- -->
 
 The mean and median total number of steps taken per day. 
 
@@ -183,4 +183,4 @@ ggplot(data=stepsPerInterval2, aes(interval, steps)) +
   ylab(label = "number of steps")
 ```
 
-![](PA1_template_files/figure-html/average steps2-1.png)<!-- -->
+![](PA1_template_files/figure-html/unnamed-chunk-11-1.png)<!-- -->

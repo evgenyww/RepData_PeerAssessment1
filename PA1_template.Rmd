@@ -11,7 +11,7 @@ library(ggplot2)
 
 
 ## Loading and preprocessing the data
-```{r read data, echo=TRUE}
+```{r, echo=TRUE}
 d = read.csv("activity.csv")
 # convert date column
 d[,"date"] <- as.Date(d[,"date"])
@@ -19,7 +19,7 @@ d[,"date"] <- as.Date(d[,"date"])
 
 
 ## What is mean total number of steps taken per day?
-```{r hist, echo=TRUE}
+```{r, echo=TRUE}
 # remove NA rows
 stepsPerDay = d[!is.na(d$steps),] %>% group_by(date) %>% summarize(steps=sum(steps))
 # draw plot
@@ -28,14 +28,14 @@ ggplot(data=stepsPerDay, aes(date, steps)) +
   labs(title="Steps per day")
 ```
 
-```{r mean and median, echo=TRUE}
+```{r, echo=TRUE}
 mean(stepsPerDay$steps)
 median(stepsPerDay$steps)
 ```
 
 ## What is the average daily activity pattern?
 
-```{r average steps, echo=TRUE}
+```{r, echo=TRUE}
 # remove NA rows
 stepsPerInterval = d[!is.na(d$steps),c("steps","interval")] %>% group_by(interval) %>% summarize(steps=mean(steps))
 # draw plot
@@ -46,21 +46,21 @@ ggplot(data=stepsPerInterval, aes(interval, steps)) +
   ylab(label = "average steps")
 ```
 
-```{r max steps, echo=TRUE}
+```{r, echo=TRUE}
 # Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
 stepsPerInterval[[which.max(stepsPerInterval$steps),'interval']]
 ```
 
 ## Imputing missing values
 
-```{r missing values qty, echo=TRUE}
+```{r, echo=TRUE}
 # Find number of NA in "steps" colomn
 dim(d[is.na(d$steps),])[1]
 ```
 
 We will replace all NA by mean of the same interval 
 
-```{r fill missing values qty, echo=TRUE}
+```{r, echo=TRUE}
 # Take only NA items
 naItems = d[is.na(d$steps),]
 # Replace NA by means of the same interval
@@ -76,7 +76,7 @@ identical(dim(d), dim(d2))
 ```
 
 The histogram of the total number of steps taken each day.
-```{r hist2, echo=TRUE}
+```{r, echo=TRUE}
 # remove NA rows
 stepsPerDay2 = d2[!is.na(d2$steps),] %>% group_by(date) %>% summarize(steps=sum(steps))
 # draw plot
@@ -86,7 +86,7 @@ ggplot(data=stepsPerDay2, aes(date, steps)) +
 ```
 
 The mean and median total number of steps taken per day. 
-```{r mean2 and median2, echo=TRUE}
+```{r, echo=TRUE}
 mean(stepsPerDay2$steps)
 median(stepsPerDay2$steps)
 ```
@@ -96,7 +96,7 @@ Do these values differ from the estimates from the first part of the assignment?
 Yes, these values are slightly different. 
 
 ## Are there differences in activity patterns between weekdays and weekends?
-```{r weekends, echo=TRUE}
+```{r, echo=TRUE}
 # Add new column weekend/weekday
 d2[,"weekend"] = sapply(d2$date, function (x) {
   if (weekdays(x) == "Saturday" | weekdays(x) == "Sunday") {
@@ -108,7 +108,7 @@ d2[,"weekend"] = sapply(d2$date, function (x) {
 ```
 
 
-```{r average steps2, echo=TRUE}
+```{r, echo=TRUE}
 # remove NA rows
 stepsPerInterval2 = d2[,c("steps","interval","weekend")] %>% group_by(interval,weekend) %>% summarize(steps=mean(steps))
 # draw plot
